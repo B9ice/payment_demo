@@ -755,6 +755,9 @@ class PaymentManager:
 
 
 def process(*data_dict, **kwargs):
+    """
+    Calls transaction action based on type field from csv 
+    """
     p = PaymentManager(**kwargs)
 
     for d in data_dict:
@@ -809,7 +812,7 @@ if __name__ == "__main__":
             try:
                 mgr = process({k.strip(): str(v).strip().replace('None', '') for k, v in row.items()})
             except PaymentError as err:
-                print(err)
+                # print(err)
                 if os.getenv('DEBUG'):
                     print(err)
 
